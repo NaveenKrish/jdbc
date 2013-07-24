@@ -1,0 +1,34 @@
+import java.io.*;
+import java.sql.*;
+
+public class Jdbc  {
+  public static void main(String args[])  {
+
+  try  {
+		String cmmd=SELECT * FROM studentlist;
+		Class.forName("Sun.jdbc.odbc.JdbcOdbcDriver");
+		Connection conn=DriverManager.getConnection("jdbc:odbc:Temp","","");
+		Statement stmt=conn.createStatement();
+		ResultSet rs=stmt.ExecuteQuery(cmmd);
+		
+		while(rs.next())  {
+		  
+	  	   String id=rs.getString("Id");
+		   String name=rs.getString("Sname");
+		   String city=rs.getString("City");
+
+		String.out.println("Student Id:" + id);
+		String.out.println("Student Name:" + name);
+		String.out.println("Student's City:" + city);
+
+		}
+	   conn.close();	
+	}
+	
+	catch(Exception e)  {
+		
+		String.out.println("Error:" + e);
+	}
+  }
+}
+		
